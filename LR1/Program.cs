@@ -73,7 +73,7 @@ namespace LR1
     class Player
     {
         private int points;
-
+        bool auto_11_choser;
 
         public void print_points()
         {
@@ -87,6 +87,7 @@ namespace LR1
 
         public void clean_points()
         {
+            auto_11_choser = false;
             points = 0;
         }
 
@@ -95,7 +96,7 @@ namespace LR1
             Random random_card = new Random();
             int new_card = random_card.Next(desk.get_number_of_cards());
             int add_points = desk.get_card(new_card);
-
+            
 
             if (add_points == 11)
             {
@@ -109,6 +110,7 @@ namespace LR1
                 }
                 else
                 {
+                    auto_11_choser = true;
                     if ((points + add_points) > 21)
                     {
                         add_points = 1;
@@ -118,6 +120,13 @@ namespace LR1
 
             Console.WriteLine("Added points: " + add_points);
             points += add_points;
+
+            if (auto_11_choser && points > 21)
+            {
+                points -= 10;
+                Console.WriteLine("11 back to 1");
+                auto_11_choser = false;
+            }
 
             if (points > 21)
             {
@@ -223,7 +232,7 @@ namespace LR1
                 Console.WriteLine("\n");
             }
 
-            desk.print();
+            //desk.print();
         }
     }
 }
