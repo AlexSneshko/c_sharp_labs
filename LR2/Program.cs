@@ -34,24 +34,26 @@ namespace LR2
 
         static char changeLetter(char letter)
         {
-            if (letter == 'z')
+            switch (letter)
             {
-                return 'a';
+                case 'z':
+                    return 'a';
+                case 'Z':
+                    return 'A';
+                default:
+                    return (char)((int)letter + 1);
             }
-            return (char)((int)letter + 1);
         }
 
         static void program2() {
-            string text1 = Console.ReadLine();
-            StringBuilder text = new StringBuilder(text1);
-            char letter = '0';
-
+            StringBuilder text = new StringBuilder(Console.ReadLine());
+            string staticText = text.ToString();
+           
             for(int i = 0; i < text.Length - 1; i++)
             {
-                if (checkVowels(text[i]))
+                if (checkVowels(staticText[i]))
                 {
-                    letter = text[i + 1];
-                    text[i + 1] = changeLetter(letter);
+                    text[i + 1] = changeLetter(staticText[i + 1]);
                 } 
             }
 
@@ -60,17 +62,16 @@ namespace LR2
 
         static void program3()
         {
-            StringBuilder text = new StringBuilder();
-            string stText = Console.ReadLine();
-            text.Append(stText);
+            StringBuilder text = new StringBuilder(Console.ReadLine());
             double number = 0;
             int rank = 0, n = text.Length - 1;
+            int i = 0;
 
-            for (int i = 0; i < n; i++)
+            for (; i < n; i++)
             {
                 if (text[i] == '.' || text[i] == ',')
                 {
-                    rank = i + 1;
+                    rank = n - i;
                     text.Remove(i, 1);
                     i--;
                     continue;
@@ -87,7 +88,7 @@ namespace LR2
 
             //program1();
             //program2();
-            //program3();
+            program3();
             
         }
     }
