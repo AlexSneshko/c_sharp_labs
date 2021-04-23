@@ -6,6 +6,8 @@ namespace LR3
     {
         static void Main(string[] args)
         {
+
+            /*
             Human Alex = new Human(0, 18, "Lexa", 70, 180, 297536898, 90);
             Human Sergey = new Human(1, 18, "Sergey", 70, 180, 445789632, 90);
             Human.setLimitHealthPoints(70);
@@ -22,6 +24,15 @@ namespace LR3
             Alex.checkGoToHospital();
             Alex.printFullInfo();
             Console.WriteLine("{0}, {1}, {2}", Alex[0], Alex[5], Alex[1]);
+            */
+            //Patient Alex = new Patient(0, 18, "Lexa", 70, 180, 297536898, 90);
+            LitePatient Alex = new LitePatient(0, 18, "Lexa", 70, 180, 297536898, 90);
+            Alex.getSick();
+            Alex.checkWeight();
+            Alex.takePills();
+            Alex.getTested(18, 10);
+            Alex.checkAnalyzes();
+            LitePatient.chechDoctor(4);
         }
     }
 }

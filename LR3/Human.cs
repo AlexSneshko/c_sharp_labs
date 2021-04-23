@@ -4,104 +4,96 @@ using System.Text;
 
 namespace LR3
 {
-    class Human
+    abstract class Human
     {
-        public int Id { get; private set; }
-        private int Age;
-        private String Name;
-        private int Weight;
-        private int Height;
-        private int PhoneNumber;
+        public int Id { get; protected set; }
+        public String Name { get; protected set; }
+        protected int age;
+        public int Age {
+            get
+            {
+                return age;
+            }
+            protected set
+            {
+                if (value < 0)
+                    age = 17;
+                else
+                    age = value;
+            }
+        }
+        protected int weight;
+        public int Weight
+        {
+            get
+            {
+                return weight;
+            }
+            protected set
+            {
+                if (value < 0)
+                    weight = 50;
+                else
+                    weight = value;
+            }
+        }
+        protected int height;
+        public int Height
+        {
+            get
+            {
+                return height;
+            }
+            protected set
+            {
+                if (value < 0)
+                    height = 170;
+                else
+                    height = value;
+            }
+        }
+        public int PhoneNumber { get; protected set; }
         private int[] PhoneBook = new int[0];
-        private int HealthPoints;
-        private static int LimitHealthPoints;
-
-
-        public Human() { }
+        protected int healthPoints;
+        public int HealthPoints
+        {
+            get
+            {
+                return healthPoints;
+            }
+            protected set
+            {
+                if (value < 0)
+                    healthPoints = 80;
+                else
+                    healthPoints = value;
+            }
+        }
+        protected static int limitHealthPoints;
+        public static int LimitHealthPoints
+        {
+            get
+            {
+                return limitHealthPoints;
+            }
+            protected set
+            {
+                if (value < 0 || value > 100)
+                    limitHealthPoints = 70;
+                else
+                    limitHealthPoints = value;
+            }
+        }
 
         public Human(int id, int age, String name, int weight, int height, int phoneNumber, int healthPoints)
         {
-            this.Id = id;
-            setAge(age);
-            setName(name);
-            setWeight(weight);
-            setHeight(height);
-            setPhoneNumber(phoneNumber);
-            setHealthPoints(healthPoints);
-        }
-
-        public int getAge()
-        {
-            return Age;
-        }
-
-        public void setAge(int age)
-        {
-            if (age < 0)
-                Age = 17;
-            else
-                Age = age;
-        }
-
-        public String getName()
-        {
-            return Name;
-        }
-
-        public void setName(String name)
-        {
+            Id = id;
+            Age = age;
             Name = name;
-        }
-
-        public int getWeight()
-        {
-            return Weight;
-        }
-
-        public void setWeight(int weight)
-        {
-            if (weight < 0)
-                weight = 50;
-            else
-                Weight = weight;
-        }
-
-        public int getHeight()
-        {
-            return Height;
-        }
-
-        public void setHeight(int height)
-        {
-            if (height < 0)
-                height = 170;
-            else
-                Height = height;
-        }
-
-        public int getPhoneNumber()
-        {
-            return PhoneNumber;
-        }
-
-        public void setPhoneNumber(int phoneNumber)
-        {
+            Weight = weight;
+            Height = height;
             PhoneNumber = phoneNumber;
-        }
-
-        public int getHealthPoints()
-        {
-            return HealthPoints;
-        }
-
-        public void setHealthPoints(int healthPoints)
-        {
-            if (healthPoints < 0)
-                HealthPoints = 80;
-            else
-            {
-                HealthPoints = healthPoints;
-            }
+            HealthPoints = healthPoints;
         }
 
         public int this[int index]
@@ -121,19 +113,6 @@ namespace LR3
                 return PhoneBook[index];
             }
 
-        }
-
-        public static int getLimitHealthPoints()
-        {
-            return LimitHealthPoints;
-        }
-
-        public static void setLimitHealthPoints(int limitHealthPoints)
-        {
-            if (limitHealthPoints < 0 || limitHealthPoints > 100)
-                LimitHealthPoints = 70;
-            else
-                LimitHealthPoints = limitHealthPoints;
         }
 
         public void checkWeight()
