@@ -26,13 +26,15 @@ namespace LR3
             Console.WriteLine("{0}, {1}, {2}", Alex[0], Alex[5], Alex[1]);
             */
             //Patient Alex = new Patient(0, 18, "Lexa", 70, 180, 297536898, 90);
-            LitePatient Alex = new LitePatient(0, 18, "Lexa", 70, 180, 297536898, 90);
+            Patient Alex = new LitePatient(0, 18, "Lexa", 70, 180, 297536898, 90);
+            Patient Sergey = new HardPatient(0, 18, "Sergey", 70, 180, 297536898, 90);
             Alex.getSick();
-            Alex.checkWeight();
-            Alex.takePills();
-            Alex.getTested(18, 10);
+            Sergey.getSick();
+            Alex.getTested(14, 10);
+            Sergey.getTested(14, 10);
             Alex.checkAnalyzes();
-            LitePatient.chechDoctor(4);
+            Sergey.checkAnalyzes();
+            Patient.chechDoctor(4);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace LR3
         public int Urine;
     }
 
-    abstract class Patient: Human
+    class Patient: Human
     {
         
         protected Analyzes analyzes;
