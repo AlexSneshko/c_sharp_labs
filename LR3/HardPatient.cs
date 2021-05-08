@@ -15,6 +15,11 @@ namespace LR3
             HealthPoints += 20;
         }
 
+        public override void takePills()
+        {
+            HealthPoints += 12;
+        }
+
         public override void checkAnalyzes()
         {
             if (analyzes.Blood > 10)

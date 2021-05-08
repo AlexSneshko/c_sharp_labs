@@ -21,7 +21,7 @@ namespace LR3
         public int Urine;
     }
 
-    class Patient: Human
+    class Patient: Human, IPatient, IComparable
     {
         
         protected Analyzes analyzes;
@@ -42,6 +42,7 @@ namespace LR3
             analyzes.Urine = urine;
         }
 
+        
         public virtual void checkAnalyzes()
         {
             if (analyzes.Blood > 12)
@@ -52,12 +53,18 @@ namespace LR3
                 Console.WriteLine("You have good analyzes");
         }
 
+        public void workWithAnalyzes(int blood, int urine)
+        {
+            getTested(blood, urine);
+            checkAnalyzes();
+            Console.WriteLine();
+        }
+
         public static void chechDoctor(int neddedDay)
         {
-            DayOfWeek dayOfWeek;
             if (Enum.IsDefined(typeof(DayOfWeek), neddedDay))
             {
-                dayOfWeek = (DayOfWeek)neddedDay;
+                DayOfWeek dayOfWeek = (DayOfWeek)neddedDay;
                 if (dayOfWeek == DayOfWeek.Sunday || dayOfWeek == DayOfWeek.Thursday)
                     Console.WriteLine("Doc is not present this day");
                 else
@@ -67,6 +74,23 @@ namespace LR3
             {
                 Console.WriteLine("Check day of the week");
             }
+        }
+
+        public void getInfo()
+        {
+            Console.WriteLine($"Name: {Name}, age: {Age}");
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Patient otherPatient = obj as Patient;
+
+            if (otherPatient != null)
+                return this.age.CompareTo(otherPatient.age);
+            else
+                throw new ArgumentException("Object is not a patient");
         }
     }
 }
