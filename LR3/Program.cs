@@ -5,6 +5,12 @@ namespace LR3
 { 
     class Program
     {
+        static void getInfoWithAnalyzes(IPatient patient, int blood, int urine)
+        {
+            patient.getInfo();
+            patient.workWithAnalyzes(blood, urine);
+        }
+
         static void Main(string[] args)
         {
 
@@ -17,17 +23,10 @@ namespace LR3
             var patients = new List<IPatient> { Alex, Sergey, Danik, Pavel, Mihail };
  
             patients.Sort();
-            Alex.takePills();
-            Sergey.takePills();
-            
+
             foreach (IPatient temp in patients)
-                temp.getInfo();
+                getInfoWithAnalyzes(temp, 12, 16);
 
-            Alex.workWithAnalyzes(12, 16);
-            Sergey.workWithAnalyzes(12, 16);
-            Danik.workWithAnalyzes(12, 16);
-
-            Patient.chechDoctor(4);
         }
     }
 }
