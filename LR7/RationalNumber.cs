@@ -256,14 +256,50 @@ namespace LR7
 
         public string ToString(string format)
         {
-            if (string.IsNullOrEmpty(format))
+            if (format == "As double")
             {
-                return ToString();
+                return ((double) this).ToString();
+            }
+            else if (format == "As int")
+            {
+                return ((int) this).ToString();
             }
             else
             {
-                return "";
+                return ToString();
             }
+        }
+
+        public static RationalNumber ToRationalNumber(string number)
+        {
+            if (number.Contains('/'))
+            {
+                string Numerator = string.Empty;
+                string Denominator = string.Empty;
+                int Index = 0;
+
+                while (number[Index] != '/')
+                {
+                    Numerator = string.Concat(Numerator, number[Index]);
+                    Index++;
+                }
+                Index++;
+                while (Index < number.Length)
+                {
+                    Denominator = string.Concat(Denominator, number[Index]);
+                    Index++;
+                }
+
+                return new RationalNumber(Convert.ToInt32(Numerator), Convert.ToInt32(Denominator));
+            }
+            else if (number.Contains(','))
+            {
+                double temp = Convert.ToDouble(number);
+                return (RationalNumber)temp;
+            }
+            else
+                return new RationalNumber(Convert.ToInt32(number), 1);
         }
     }
 }
+
